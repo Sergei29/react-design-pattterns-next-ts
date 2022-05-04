@@ -2,56 +2,25 @@ import React, { useState } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import axios, { AxiosError } from 'axios';
+import UserDisplay from '../src/components/UserDisplay';
+import CurrentUserLoader from '../src/containers/CurrentUserLoader';
 import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
+  const [formValue, setFormValue] = useState<null | number>(null);
   const [userId, setUserId] = useState<string>('');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<null | string>(null);
-  const [data, setData] = useState<null | Record<string, any>>(null);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setData(null);
+    setFormValue(null);
     setUserId(event.target.value);
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (userId.trim().length === 0) return;
-    setLoading(true);
-    setError(null);
-    try {
-      const { data } = await axios.get<{ user: Record<string, any> }>(
-        `/api/users/${userId}`,
-      );
-      setData(data.user);
-      setLoading(false);
-    } catch (error) {
-      const { response } = error as AxiosError<any, any>;
-      const message = response?.data.error || 'Failed ot fetch user';
-      setError(message);
-      setLoading(false);
-    }
-  };
-
-  const renderUser = () => {
-    if (loading) return <p style={{ textAlign: 'center' }}>loading...</p>;
-    if (error) return <p style={{ textAlign: 'center' }}>Error: {error}</p>;
-    if (!data) return <p style={{ textAlign: 'center' }}>No info</p>;
-    if (!!data) {
-      return (
-        <div style={{ textAlign: 'center' }}>
-          <h3>{data.name}</h3>
-          <p>age: {data.age} years</p>
-          <p>ID: {data.id}</p>
-          <h3>Hobbies</h3>
-          <ul>
-            {data.hobbies.map((hobby: string) => (
-              <li key={hobby}>{hobby}</li>
-            ))}
-          </ul>
-        </div>
-      );
+    const intUserId = parseInt(userId, 10);
+    if (typeof intUserId === 'number') {
+      setFormValue(parseInt(userId, 10));
     }
   };
 
@@ -73,7 +42,11 @@ const Home: NextPage = () => {
           />
           <button type='submit'>submit</button>
         </form>
-        {renderUser()}
+        {formValue && (
+          <CurrentUserLoader userId={formValue}>
+            <UserDisplay />
+          </CurrentUserLoader>
+        )}
       </main>
 
       <footer className={styles.footer}></footer>

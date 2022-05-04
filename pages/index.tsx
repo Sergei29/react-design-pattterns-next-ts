@@ -11,6 +11,7 @@ const Home: NextPage = () => {
   const [data, setData] = useState<null | Record<string, any>>(null);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setData(null);
     setUserId(event.target.value);
   };
 
@@ -41,8 +42,14 @@ const Home: NextPage = () => {
       return (
         <div style={{ textAlign: 'center' }}>
           <h3>{data.name}</h3>
-          <p>Email: {data.email}</p>
+          <p>age: {data.age} years</p>
           <p>ID: {data.id}</p>
+          <h3>Hobbies</h3>
+          <ul>
+            {data.hobbies.map((hobby: string) => (
+              <li key={hobby}>{hobby}</li>
+            ))}
+          </ul>
         </div>
       );
     }

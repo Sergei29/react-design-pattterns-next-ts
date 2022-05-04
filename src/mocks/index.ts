@@ -268,3 +268,27 @@ export const usersOther = [
     hobbies: ['clubbing', 'travel', 'gym'],
   },
 ];
+
+export const products = [
+  {
+    id: 1,
+    name: 'Flat Screen TV',
+    price: 300,
+    description: 'Huge LCD, big deal',
+    rating: 4.1,
+  },
+  {
+    id: 2,
+    name: 'Basketball',
+    price: 20,
+    description: 'Just like the pros use',
+    rating: 2.1,
+  },
+  {
+    id: 3,
+    name: 'Running shoes',
+    price: 120,
+    description: 'State-of-the-art technology optimum exercise',
+    rating: 5.1,
+  },
+];

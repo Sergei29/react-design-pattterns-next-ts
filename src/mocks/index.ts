@@ -230,3 +230,41 @@ export const users = [
     },
   },
 ];
+
+export const usersOther = [
+  {
+    id: 1,
+    name: 'John',
+    age: 20,
+    hairColor: 'brown',
+    hobbies: ['swimming', 'hiking'],
+  },
+  {
+    id: 2,
+    name: 'Mary',
+    age: 50,
+    hairColor: 'black',
+    hobbies: ['reading', 'TV', 'hiking'],
+  },
+  {
+    id: 3,
+    name: 'Alison',
+    age: 30,
+    hairColor: 'blonde',
+    hobbies: ['clubbing', 'drinking', 'travel', 'gym'],
+  },
+  {
+    id: 4,
+    name: 'Mark',
+    age: 25,
+    hairColor: 'ginger',
+    hobbies: ['cross-fit', 'programming'],
+  },
+  {
+    id: 5,
+    name: 'Eugene',
+    age: 40,
+    hairColor: 'brown',
+    hobbies: ['clubbing', 'travel', 'gym'],
+  },
+];

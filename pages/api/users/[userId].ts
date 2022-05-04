@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { users } from '../../../src/mocks';
+import { usersOther as users } from '../../../src/mocks';
 type Data = {
   user: Record<string, any>;
 };
@@ -29,5 +29,7 @@ export default function handler(
     return;
   }
 
-  res.status(200).json({ user });
+  setTimeout(() => {
+    res.status(200).json({ user });
+  }, 700);
 }

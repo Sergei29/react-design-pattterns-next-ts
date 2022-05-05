@@ -1,55 +1,56 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import axios, { AxiosError } from 'axios';
+import React, { useEffect, useState } from "react"
+import styled from "styled-components"
+import axios, { AxiosError } from "axios"
 
 const Centered = styled.p`
   justify-content: center;
   font-weight: 600;
-`;
-const Loader = () => <Centered>Loading...</Centered>;
+`
+
+const Loader = () => <Centered>Loading...</Centered>
 const Error = ({ message }: { message: string }) => (
   <Centered>{message}</Centered>
-);
-const NoData = () => <Centered>No data</Centered>;
+)
+const NoData = () => <Centered>No data</Centered>
 
 type Props = {
-  children: React.ReactNode;
-  userId: number | null;
-};
+  children: React.ReactNode
+  userId: number | null
+}
 
 const CurrentUserLoader = ({ children, userId }: Props): JSX.Element => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<null | string>(null);
-  const [data, setData] = useState<null | Record<string, any>>(null);
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<null | string>(null)
+  const [data, setData] = useState<null | Record<string, any>>(null)
 
   useEffect(() => {
     if (!userId) {
-      setData(null);
-      setError(null);
-      return;
+      setData(null)
+      setError(null)
+      return
     }
     const fetchData = async () => {
-      setLoading(true);
-      setError(null);
+      setLoading(true)
+      setError(null)
       try {
         const { data } = await axios.get<{ user: Record<string, any> }>(
-          `/api/users/${userId}`,
-        );
-        setData(data.user);
-        setLoading(false);
+          `/api/users/${userId}`
+        )
+        setData(data.user)
+        setLoading(false)
       } catch (error) {
-        const { response } = error as AxiosError<any, any>;
-        const message = response?.data.error || 'Failed ot fetch user';
-        setError(message);
-        setLoading(false);
+        const { response } = error as AxiosError<any, any>
+        const message = response?.data.error || "Failed ot fetch user"
+        setError(message)
+        setLoading(false)
       }
-    };
-    fetchData();
-  }, [userId]);
+    }
+    fetchData()
+  }, [userId])
 
-  if (loading) return <Loader />;
-  if (error) return <Error message={error} />;
-  if (!data) return <NoData />;
+  if (loading) return <Loader />
+  if (error) return <Error message={error} />
+  if (!data) return <NoData />
 
   return (
     <>
@@ -57,12 +58,12 @@ const CurrentUserLoader = ({ children, userId }: Props): JSX.Element => {
         if (React.isValidElement(currentChild)) {
           return React.cloneElement(currentChild, {
             user: data,
-          });
+          })
         }
-        return currentChild;
+        return currentChild
       })}
     </>
-  );
-};
+  )
+}
 
-export default CurrentUserLoader;
+export default CurrentUserLoader

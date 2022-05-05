@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import axios, { AxiosError } from 'axios';
 import UserDisplay from '../src/components/UserDisplay';
+import ProductDisplay from '../src/components/ProductDisplay';
 import CurrentUserLoader from '../src/containers/CurrentUserLoader';
+import ResourceLoader from '../src/containers/ResourceLoader';
 import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
@@ -42,11 +43,23 @@ const Home: NextPage = () => {
           />
           <button type='submit'>submit</button>
         </form>
-        {formValue && (
-          <CurrentUserLoader userId={formValue}>
-            <UserDisplay />
-          </CurrentUserLoader>
-        )}
+        <CurrentUserLoader userId={formValue}>
+          <UserDisplay />
+        </CurrentUserLoader>
+        <hr style={{ backgroundColor: '#333', width: '100%' }} />
+        <ResourceLoader
+          resourceURL={formValue ? `api/users/${formValue}` : null}
+          resourceName='user'
+        >
+          <UserDisplay />
+        </ResourceLoader>
+        <hr style={{ backgroundColor: '#333', width: '100%' }} />
+        <ResourceLoader
+          resourceURL={formValue ? `api/products/${formValue}` : null}
+          resourceName='product'
+        >
+          <ProductDisplay />
+        </ResourceLoader>
       </main>
 
       <footer className={styles.footer}></footer>

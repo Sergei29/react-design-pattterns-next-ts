@@ -2,19 +2,21 @@ import React from 'react';
 import { User } from '../../types';
 
 type Props = {
-  data?: User | Record<string, any>;
+  user?: User | Record<string, any>;
 };
 
-const UserDisplay = ({ data }: Props): JSX.Element | null => {
-  if (!data) return null;
+const UserDisplay = ({ user }: Props): JSX.Element | null => {
+  if (!user) return null;
+  const { name, age, id, hobbies, hairColor } = user;
   return (
     <div style={{ textAlign: 'center' }}>
-      <h3>{data.name}</h3>
-      <p>age: {data.age} years</p>
-      <p>ID: {data.id}</p>
+      <h3>{name}</h3>
+      <p>age: {age} years</p>
+      <p>Hair color: {hairColor}</p>
+      <p>ID: {id}</p>
       <h3>Hobbies</h3>
       <ul>
-        {data.hobbies.map((hobby: string) => (
+        {hobbies.map((hobby: string) => (
           <li key={hobby}>{hobby}</li>
         ))}
       </ul>

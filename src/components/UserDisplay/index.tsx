@@ -1,15 +1,24 @@
-import React from 'react';
-import { User } from '../../types';
+import React from "react"
+import { User } from "../../types"
 
-type Props = {
-  user?: User | Record<string, any>;
-};
+type Data = {
+  user?: User | Record<string, any>
+}
+
+type NestedData = {
+  user?: {
+    user: User | Record<string, any>
+  }
+}
+
+type Props = Data | NestedData
 
 const UserDisplay = ({ user }: Props): JSX.Element | null => {
-  if (!user) return null;
-  const { name, age, id, hobbies, hairColor } = user;
+  if (!user) return null
+  const { name, age, id, hobbies, hairColor } =
+    (user as NestedData).user || user
   return (
-    <div style={{ textAlign: 'center' }}>
+    <div style={{ textAlign: "center" }}>
       <h3>{name}</h3>
       <p>age: {age} years</p>
       <p>Hair color: {hairColor}</p>
@@ -21,7 +30,7 @@ const UserDisplay = ({ user }: Props): JSX.Element | null => {
         ))}
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default UserDisplay;
+export default UserDisplay

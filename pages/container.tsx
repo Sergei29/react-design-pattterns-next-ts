@@ -1,7 +1,18 @@
 import React, { useState } from "react"
 import type { NextPage } from "next"
 import Head from "next/head"
+import axios from "axios"
 import PageContainer from "../src/containers/PageContainer"
+import DataSource from "../src/containers/DataSource"
+import ProductDisplay from "../src/components/ProductDisplay"
+import UserDisplay from "../src/components/UserDisplay"
+import { Product, User } from "../src/types"
+
+const fetchProduct = async () =>
+  (await axios.get<{ product: Product }>(`/api/products/1`)).data
+
+const fetchUser = async () =>
+  (await axios.get<{ user: User }>(`/api/users/1`)).data
 
 const Container: NextPage = () => {
   return (
@@ -14,6 +25,13 @@ const Container: NextPage = () => {
 
       <PageContainer>
         <h1>Container</h1>
+        <DataSource getData={fetchProduct} resourceName="product">
+          <ProductDisplay />
+        </DataSource>
+        <hr />
+        <DataSource getData={fetchUser} resourceName="user">
+          <UserDisplay />
+        </DataSource>
       </PageContainer>
     </>
   )

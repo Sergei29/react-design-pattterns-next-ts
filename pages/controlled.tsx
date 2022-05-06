@@ -4,6 +4,7 @@ import Head from "next/head"
 import PageContainer from "../src/containers/PageContainer"
 import UncontrolledForm from "../src/components/UncontrolledForm"
 import ControlledForm from "../src/components/ControlledForm"
+import Divider from "../src/components/Divider"
 import UncontrolledStepper, {
   StepOne,
   StepTwo,
@@ -31,13 +32,13 @@ const ControlledComponents: NextPage = () => {
 
       <PageContainer>
         <h1>Controlled vs Uncontrolled Components</h1>
-        <hr />
+        <Divider />
         <h2>Uncontrolled Form</h2>
         <UncontrolledForm onSubmit={onSubmit} />
-        <hr />
+        <Divider />
         <h2>Controlled Form</h2>
         <ControlledForm onSubmit={onSubmit} />
-        <hr />
+        <Divider />
         <h2>Uncontrolled stepper</h2>
         <UncontrolledStepper onCompleted={onCompleted}>
           <StepOne />

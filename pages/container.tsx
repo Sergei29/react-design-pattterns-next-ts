@@ -6,6 +6,7 @@ import PageContainer from "../src/containers/PageContainer"
 import DataSource from "../src/containers/DataSource"
 import ProductDisplay from "../src/components/ProductDisplay"
 import UserDisplay from "../src/components/UserDisplay"
+import Divider from "../src/components/Divider"
 import { Product, User } from "../src/types"
 
 const fetchProduct = async () =>
@@ -28,7 +29,7 @@ const Container: NextPage = () => {
         <DataSource getData={fetchProduct} resourceName="product">
           <ProductDisplay />
         </DataSource>
-        <hr />
+        <Divider />
         <DataSource getData={fetchUser} resourceName="user">
           <UserDisplay />
         </DataSource>

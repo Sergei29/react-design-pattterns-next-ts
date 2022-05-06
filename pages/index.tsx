@@ -6,6 +6,7 @@ import ProductDisplay from "../src/components/ProductDisplay"
 import CurrentUserLoader from "../src/containers/CurrentUserLoader"
 import ResourceLoader from "../src/containers/ResourceLoader"
 import PageContainer from "../src/containers/PageContainer"
+import Divider from "../src/components/Divider"
 
 const Home: NextPage = () => {
   const [formValue, setFormValue] = useState<null | number>(null)
@@ -46,14 +47,14 @@ const Home: NextPage = () => {
         <CurrentUserLoader userId={formValue}>
           <UserDisplay />
         </CurrentUserLoader>
-        <hr style={{ backgroundColor: "#333", width: "100%" }} />
+        <Divider />
         <ResourceLoader
           resourceURL={formValue ? `api/users/${formValue}` : null}
           resourceName="user"
         >
           <UserDisplay />
         </ResourceLoader>
-        <hr style={{ backgroundColor: "#333", width: "100%" }} />
+        <Divider />
         <ResourceLoader
           resourceURL={formValue ? `api/products/${formValue}` : null}
           resourceName="product"

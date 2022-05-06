@@ -12,10 +12,12 @@ const UncontrolledStepper = ({ children, onCompleted }: Props): JSX.Element => {
   const childrenList = React.Children.toArray(children)
   const goToNext = () => {
     setCurrentIndex((current) => {
-      if (current < childrenList.length - 1) {
+      if (current + 1 === childrenList.length - 1) {
+        onCompleted()
+      }
+      if (current + 1 < childrenList.length) {
         return current + 1
       } else {
-        onCompleted()
         return current
       }
     })
@@ -24,10 +26,11 @@ const UncontrolledStepper = ({ children, onCompleted }: Props): JSX.Element => {
   const currentChild = childrenList[currentIndex]
 
   return (
-    <div>
-      {React.isValidElement(currentChild) &&
-        React.cloneElement(currentChild, { goToNext })}
-    </div>
+    <>
+      {React.isValidElement(currentChild)
+        ? React.cloneElement(currentChild, { goToNext })
+        : currentChild}
+    </>
   )
 }
 

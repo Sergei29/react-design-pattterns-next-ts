@@ -10,16 +10,17 @@ const UncontrolledStepper = ({ children, onCompleted }: Props): JSX.Element => {
   const [data, setData] = useState<Record<string, any>>({})
   const [currentIndex, setCurrentIndex] = useState<number>(0)
   const childrenList = React.Children.toArray(children)
-  const goToNext = () => {
+
+  const goToNext = (stepData: Record<string, any>) => {
+    const newData = { ...data, ...stepData }
+    setData(newData)
+
     setCurrentIndex((current) => {
-      if (current + 1 === childrenList.length - 1) {
+      const nextIndex = current + 1
+      if (nextIndex === childrenList.length - 1) {
         onCompleted()
       }
-      if (current + 1 < childrenList.length) {
-        return current + 1
-      } else {
-        return current
-      }
+      return nextIndex < childrenList.length ? nextIndex : current
     })
   }
 

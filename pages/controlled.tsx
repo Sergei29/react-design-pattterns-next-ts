@@ -4,10 +4,21 @@ import Head from "next/head"
 import PageContainer from "../src/containers/PageContainer"
 import UncontrolledForm from "../src/components/UncontrolledForm"
 import ControlledForm from "../src/components/ControlledForm"
+import UncontrolledStepper, {
+  StepOne,
+  StepTwo,
+  StepThree,
+  StepFour,
+  StepFive,
+} from "../src/components/UncontrolledStepper"
 
 const ControlledComponents: NextPage = () => {
   const onSubmit = (data: Record<string, any>) => {
     console.log({ data })
+  }
+
+  const onCompleted = () => {
+    console.log("completed!")
   }
 
   return (
@@ -26,6 +37,15 @@ const ControlledComponents: NextPage = () => {
         <hr />
         <h2>Controlled Form</h2>
         <ControlledForm onSubmit={onSubmit} />
+        <hr />
+        <h2>Uncontrolled stepper</h2>
+        <UncontrolledStepper onCompleted={onCompleted}>
+          <StepOne />
+          <StepTwo />
+          <StepThree />
+          <StepFour />
+          <StepFive />
+        </UncontrolledStepper>
       </PageContainer>
     </>
   )

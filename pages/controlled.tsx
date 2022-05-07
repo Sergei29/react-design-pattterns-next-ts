@@ -5,6 +5,7 @@ import PageContainer from "../src/containers/PageContainer"
 import UncontrolledForm from "../src/components/UncontrolledForm"
 import ControlledForm from "../src/components/ControlledForm"
 import Divider from "../src/components/Divider"
+import ControlledStepperUsage from "../src/components/ControlledStepper/Usage"
 import UncontrolledStepper, {
   StepOne,
   StepTwo,
@@ -47,6 +48,9 @@ const ControlledComponents: NextPage = () => {
           <StepFour />
           <StepFive />
         </UncontrolledStepper>
+        <Divider />
+        <h2>Controlled stepper</h2>
+        <ControlledStepperUsage />
       </PageContainer>
     </>
   )

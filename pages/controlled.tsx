@@ -18,8 +18,8 @@ const ControlledComponents: NextPage = () => {
     console.log({ data })
   }
 
-  const onCompleted = () => {
-    console.log("completed!")
+  const onCompleted = (data: Record<string, any>) => {
+    console.log("completed! >>: ", data)
   }
 
   return (

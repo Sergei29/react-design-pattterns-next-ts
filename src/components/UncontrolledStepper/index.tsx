@@ -3,7 +3,7 @@ export * from "./Steps"
 
 type Props = {
   children: React.ReactNode
-  onCompleted: () => void
+  onCompleted: (...args: any[]) => void
 }
 
 const UncontrolledStepper = ({ children, onCompleted }: Props): JSX.Element => {
@@ -12,13 +12,12 @@ const UncontrolledStepper = ({ children, onCompleted }: Props): JSX.Element => {
   const childrenList = React.Children.toArray(children)
 
   const goToNext = (stepData: Record<string, any>) => {
-    const newData = { ...data, ...stepData }
-    setData(newData)
+    setData((prev) => ({ ...prev, ...stepData }))
 
     setCurrentIndex((current) => {
       const nextIndex = current + 1
       if (nextIndex === childrenList.length - 1) {
-        onCompleted()
+        onCompleted(data)
       }
       return nextIndex < childrenList.length ? nextIndex : current
     })

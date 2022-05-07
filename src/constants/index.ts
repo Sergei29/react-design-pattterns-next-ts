@@ -7,4 +7,9 @@ export const navLinks = [
     name: "Controlled Vs Uncontrolled",
     path: "/controlled",
   },
+  {
+    id: 5,
+    name: "Higher-Order Components",
+    path: "/hoc",
+  },
 ]

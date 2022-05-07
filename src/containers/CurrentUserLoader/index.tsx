@@ -1,17 +1,6 @@
 import React, { useEffect, useState } from "react"
-import styled from "styled-components"
 import axios, { AxiosError } from "axios"
-
-const Centered = styled.p`
-  justify-content: center;
-  font-weight: 600;
-`
-
-const Loader = () => <Centered>Loading...</Centered>
-const Error = ({ message }: { message: string }) => (
-  <Centered>{message}</Centered>
-)
-const NoData = () => <Centered>No data</Centered>
+import { Loader, Error, NoData } from "../../components/common"
 
 type Props = {
   children: React.ReactNode

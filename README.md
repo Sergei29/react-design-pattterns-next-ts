@@ -1,3 +1,14 @@
+### Patterns
+
+from the course [React: Design Patterns](https://www.linkedin.com/learning/react-design-patterns)
+
+- Layout components
+- Container components
+- Controlled vs Uncontrolled components
+- Higher-Order components
+- Recursive components
+- Partially applied component
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

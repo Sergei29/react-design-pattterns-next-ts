@@ -53,8 +53,10 @@ const HOC: NextPage = () => {
 
       <PageContainer>
         <h1>Higher-Order Components</h1>
+        <h2>With logger HOC</h2>
         <LoggedProductDisplay product={products[0]} />
         <Divider />
+        <h2>With Data HOC</h2>
         <SingleInputForm onSubmitSuccess={onSubmitSuccess} />
         {productId && (
           <ProductCard title="Product display" productId={productId} />

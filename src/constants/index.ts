@@ -12,4 +12,9 @@ export const navLinks = [
     name: "Higher-Order Components",
     path: "/hoc",
   },
+  {
+    id: 6,
+    name: "Recursive Component",
+    path: "/recursive",
+  },
 ]

@@ -17,4 +17,14 @@ export const navLinks = [
     name: "Recursive Component",
     path: "/recursive",
   },
+  {
+    id: 7,
+    name: "Component Composition",
+    path: "/composition",
+  },
+  {
+    id: 8,
+    name: "Partially-Applied Component",
+    path: "/partial",
+  },
 ]

@@ -34,3 +34,13 @@ export type Note = {
   id: string
   title: string
 }
+
+export type SpacexData = {
+  name: string
+  date_utc: string
+  links: {
+    patch: {
+      large: string
+    }
+  }
+} & Record<string, any>

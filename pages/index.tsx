@@ -1,11 +1,28 @@
 import React from "react"
 import type { NextPage } from "next"
 import Head from "next/head"
+import Image from "next/image"
+import { useQuery } from "react-query"
+import { fetchLatestLaunches } from "../src/utils"
 import PageContainer from "../src/containers/PageContainer"
 import Divider from "../src/components/Divider"
-import { fetchLatestLaunches } from "../src/utils"
+import { Loader, Error, NoData } from "../src/components/common"
+import LaunchDisplay from "../src/components/LaunchDisplay"
 
 const Home: NextPage = () => {
+  const { data, isLoading, isFetching, isError } = useQuery(
+    "spacex",
+    fetchLatestLaunches
+  )
+
+  const renderSpacexData = () => {
+    if (isLoading) return <Loader />
+    if (isError) return <Error message="Error!" />
+    if (!data) return <NoData />
+
+    return <LaunchDisplay launch={data} />
+  }
+
   return (
     <>
       <Head>
@@ -16,6 +33,7 @@ const Home: NextPage = () => {
 
       <PageContainer>
         <PageContainer.Title>React Query Homepage</PageContainer.Title>
+        {renderSpacexData()}
       </PageContainer>
     </>
   )

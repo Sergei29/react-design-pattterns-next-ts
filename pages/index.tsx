@@ -4,6 +4,7 @@ import Head from "next/head"
 import PageContainer from "../src/containers/PageContainer"
 import Divider from "../src/components/Divider"
 import { fetchLatestLaunches } from "../src/utils"
+
 const Home: NextPage = () => {
   return (
     <>

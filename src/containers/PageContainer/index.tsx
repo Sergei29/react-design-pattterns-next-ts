@@ -2,6 +2,10 @@ import React from "react"
 import styled from "styled-components"
 import Navigation from "../../components/Navigation"
 
+const Title = styled.h1`
+  text-align: center;
+  font-size: 2.5rem;
+`
 const Container = styled.main`
   min-height: 100vh;
   padding: 4rem 0;
@@ -34,5 +38,7 @@ const PageContainer = ({ children }: Props): JSX.Element => {
     </>
   )
 }
+
+PageContainer.Title = Title
 
 export default PageContainer
